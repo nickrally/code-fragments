@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default bg-drk-gray fixed-top">
+      <a class="navbar-brand">Code Fragments</a>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav mr-auto no-bullet">
+          <li {% if request.path == '/' %}class="current-link"{% endif %}>
+            <a class="navbar-link" href="/">Home</a>
+          </li>
+          <li {% if request.path.startswith('/pages') %}class="current-link"{% endif %}>
+            <a class="navbar-link" href="/fragments">Fragments</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right no-bullet">
+            {% if session.logged_in %}
+              <!--li class="nav-item"-->
+              <li {% if request.path == '/dashboard' %}class="current-link"{% endif %}>
+                  <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+              </li>
+            {% else %}
+              <li {% if request.path == '/register' %}class="current-link"{% endif %}>
+                  <a class="nav-link" href="/register">Register</a>
+              </li>
+              <li {% if request.path == '/login' %}class="current-link"{% endif %}>
+                  <a class="nav-link" href="/login">Login</a>
+              </li>
+            {% endif %}
+          </ul>
+      </div>
+</nav>

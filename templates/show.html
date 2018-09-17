@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="blog-header">
+            <h2 class="blog-title">Fragments</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div class="blog-post">
+                    <h4 class="blog-post-title">{{ fragment.title }}</h4>
+                    <div class="txt-div">{{ fragment.text | safe }}</div>
+                    <h6 class="blog-post-footer">{{', '.join(fragment.tags)}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

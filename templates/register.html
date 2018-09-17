@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="" class="dont-stretch">
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.code, class_="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.name, class_="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.email, class_="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.username, class_="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.password, class_="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-4">
+        {{render_field(form.confirm, class_="form-control")}}
+      </div>
+    </div>
+    <p><input type="submit" class="btn btn-primary search-btn" value="Submit"></p>
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div {% if error %}class="text-danger dont-stretch">Bad username or password{% endif %}</div>
+  <form action="" method="POST" class="dont-stretch">
+      <div class="row">
+        <div class="form-group col-xs-4">
+          <label>Username</label>
+          <input type="text" name="username" class="form-control" value={{request.form.username}}>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-4">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" value={{request.form.password}}>
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary search-btn">Submit</button>
+  </form>
+{% endblock %}

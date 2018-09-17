@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="blog-header">
+            <h2 class="blog-title">Edit Fragment</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <form method="POST" action="">
+                    {{ form.title.label }} {{ form.title(size=250, class_="form-control") }} <br/>
+                    {{ form.text.label }}  {{ form.text(rows="50",  class_="form-control", id="inputText") }} <br/>
+                    {{ form.tags.label }} {{ form.tags(class_="form-control") }} <br/>
+                    <div>
+                        <button type="submit" class="btn btn-primary search-btn">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
