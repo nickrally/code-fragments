@@ -2,7 +2,7 @@ import os
 import datetime
 import re
 from flask import Flask, request, render_template, flash, session, redirect, url_for
-from wtforms import Form, StringField, DateField, TextAreaField, Field, PasswordField, validators, widgets
+from wtforms import Form, StringField, TextAreaField, Field, PasswordField, validators, widgets
 from flask_wtf import FlaskForm
 from passlib.hash import sha256_crypt
 from flask_sqlalchemy import SQLAlchemy
