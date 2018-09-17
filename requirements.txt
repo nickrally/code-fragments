@@ -4,7 +4,6 @@ Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
 gunicorn==19.7.1
 Jinja2==2.9.6
-psycopg2==2.6.2
 PyYAML==3.12
 SQLAlchemy==1.1.14
 Werkzeug==0.12.2
