@@ -63,7 +63,7 @@ def register():
             db.session.commit()
         except IntegrityError:
             return render_template('error.html', error="Username already exists")
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     return render_template('register.html', form = form)
 
 def is_logged_in(f):
