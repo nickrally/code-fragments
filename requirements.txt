@@ -6,7 +6,7 @@ gunicorn==19.7.1
 Jinja2==2.9.6
 passlib==1.7.1
 PyYAML==3.12
-psycopg2==2.7.1
 SQLAlchemy==1.1.14
+psycopg2==2.6.2
 Werkzeug==0.12.2
 WTForms==2.1
