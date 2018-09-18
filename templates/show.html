@@ -9,6 +9,7 @@
             <div class="col-sm-8 blog-main">
                 <div class="blog-post">
                     <h4 class="blog-post-title">{{ fragment.title }}</h4>
+                    <p class="date-style">{{ fragment.date }}</p>
                     <div class="txt-div">{{ fragment.text | safe }}</div>
                     <h6 class="blog-post-footer">{{', '.join(fragment.tags)}}</h6>
                 </div>

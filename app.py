@@ -2,7 +2,7 @@ import os
 import datetime
 import re
 from flask import Flask, request, render_template, flash, session, redirect, url_for
-from wtforms import Form, StringField, TextAreaField, Field, PasswordField, validators, widgets
+from wtforms import Form, StringField, TextAreaField, DateField, Field, PasswordField, validators, widgets
 from flask_wtf import FlaskForm
 from passlib.hash import sha256_crypt
 from flask_sqlalchemy import SQLAlchemy
@@ -220,7 +220,8 @@ def add():
     if request.method == 'POST':
         fragment = Fragment(request.form['title'],
                             request.form['text'],
-                            stripSpaceAndLowerTags(request.form['tags']))
+                            stripSpaceAndLowerTags(request.form['tags']),
+                            request.form['date'])
 
         db.session.add(fragment)
         db.session.commit()
@@ -246,6 +247,7 @@ class FragmentForm(FlaskForm):
     title = StringField('title')
     text  = TextAreaField('text')
     tags  = TagListField('tags')
+    date  = DateField('date')
 
 @app.route('/edit/<string:id>', methods=['GET','POST'], endpoint='edit')
 @is_logged_in
