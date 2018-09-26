@@ -2,11 +2,7 @@
 
 {% block body %}
     <div class="text-center">
-        <p class="lead">
-            Debugging is twice as hard as writing the code in the first place.
-            Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.— Brian W. Kernighan
-        {% if session.logged_in == NULL %}
-{% endif %}
-</p>
-</div>
+        <img src="static/img/night_watch.png">
+    </div>
+    {% if session.logged_in == NULL %}{% endif %}
 {% endblock %}
