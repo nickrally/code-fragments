@@ -7,16 +7,21 @@
         </div>
         <div class="row">
             <div class="col-sm-8 blog-main">
-                {% for fragment in fragments %}
-                <div class="blog-post">
-                    <h4 class="blog-post-title">{{ fragment.title }}</h4>
-                    <div class="txt-div">{{ fragment.text | safe }}</div>
-                    <h6 class="blog-post-footer">{{', '.join(fragment.tags)}}</h6>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="{{ url_for('show',   id=fragment.id) }}">...</a></li>
-                    </ul>
-                </div>
-                {% endfor %}
+                {% if fragments %}
+                    {% for fragment in fragments %}
+                    <div class="blog-post">
+                        <h4 class="blog-post-title">{{ fragment.title }}</h4>
+                        <div class="txt-div">{{ fragment.text | safe }}</div>
+                        <h6 class="blog-post-footer">{{', '.join(fragment.tags)}}</h6>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="{{ url_for('show',   id=fragment.id) }}">...</a></li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="lead">
+                        No results found
+                {% endif %}
             </div>
         </div>
     </div>

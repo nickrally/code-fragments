@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 from passlib.hash import sha256_crypt
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import or_ , and_
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, DataError
 
 app = Flask(__name__)
 app.secret_key = b'ZsbK\x9fdD|`\x07\x05\x01\x95\x93u\xae'
@@ -162,48 +162,40 @@ def search():
         else:
             return or_(*clauses)
 
-
     def searchByDate():
         date = request.args.get('dateQuery').replace(" ", "")
-        option = request.args.get('date-radio')
-        if option == 'on':
-            return Fragment.date == date
-        elif option == 'before':
-            return Fragment.date <= date
-        elif option == 'after':
-            return Fragment.date >= date
-        elif option == 'between':
-            dates = date.split(',')
-            return and_(Fragment.date >= dates[0], Fragment.date <= dates[1])
+        return Fragment.date == date
 
-    text_selected = request.args.get('searchText') and request.args.get('textQuery')
-    tags_selected = request.args.get('searchTags') and request.args.get('tagsQuery')
-    date_selected = request.args.get('searchByDate') and request.args.get('dateQuery')
+    text_selected = request.args.get('textQuery')
+    tags_selected = request.args.get('tagsQuery')
+    date_selected = request.args.get('dateQuery')
 
-    if text_selected:
-        fragments = Fragment.query.filter(searchText()).all()
+    try:
+        if text_selected:
+            fragments = Fragment.query.filter(searchText()).all()
 
-    if tags_selected:
-        fragments = Fragment.query.filter(searchTags()).all()
+        if tags_selected:
+            fragments = Fragment.query.filter(searchTags()).all()
 
-    if date_selected:
-        if request.args.get('date-radio'):
+        if date_selected:
             fragments = Fragment.query.filter(searchByDate()).all()
 
-    if text_selected and date_selected:
-        if request.args.get('date-radio'):
+        if text_selected and date_selected:
             fragments = Fragment.query.filter(and_(searchText(), searchByDate())).all()
 
-    if text_selected and tags_selected:
-        fragments = Fragment.query.filter(and_(searchText(), searchTags())).all()
+        if text_selected and tags_selected:
+            fragments = Fragment.query.filter(and_(searchText(), searchTags())).all()
 
-    if tags_selected and date_selected:
-        if request.args.get('date-radio'):
+        if tags_selected and date_selected:
             fragments = Fragment.query.filter(and_(searchTags(), searchByDate())).all()
 
-    if text_selected and tags_selected and date_selected:
-        if request.args.get('date-radio'):
+        if text_selected and tags_selected and date_selected:
             fragments = Fragment.query.filter(and_(searchText(), searchTags(), searchByDate())).all()
+    except DataError:
+        return render_template('error.html', error="Data Error. For dates use yyyy-mm-dd format.")
+
+    if fragments == None:
+        return render_template('error.html', error="Check if all search boxes are empty")
 
     return render_template('results.html', fragments=fragments)
 

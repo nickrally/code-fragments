@@ -52,6 +52,7 @@ h2 {
   padding:5px;
 }
 
+
 .txt-div {
   color: black;
   border:1px solid #5D6D7E;
@@ -64,7 +65,9 @@ h2 {
 }
 
 .query-operator {
-  padding:5px;
+  font-family: sans-serif;
+  color: #909090;
+  text-align: center;
 }
 
 .blog-post-title, blog-post-footer {
@@ -123,3 +126,4 @@ table.width-auto{
   width: 95%;
   table-layout: fixed;
 }
+

@@ -3,67 +3,26 @@
     <div class="sidebar-module sidebar-module-inset search-help">
         <form class="form-inline" method="GET" action="search">
             <div class="search-div">
-            <div claass="form-group">
-                <input type="text" class="form-control" name="textQuery" id="inputTextQuery" placeholder="enter text">
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="searchText">
-                        <span class="search-checkbox">search text</span>
-                </label>
-            </div>
-            </div>
-            <div class="search-div">
-            <div claass="form-group">
-                <input type="text" class="form-control" name="tagsQuery" id="inputTagsQuery" placeholder="enter tags">
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="operator">
-                        use AND operator for <br /> comma separated tags<br />(default is OR)
-                </label>
-                <label>
-                    <input type="checkbox" name="searchTags">
-                        <span class="search-checkbox">search tags</span>
-                </label>
-            </div>
-            </div>
-            <div class="search-div">
-            <div claass="form-group">
-                <p>
-                <label class="radio-inline"><input type="radio" name="date-radio" value="on">On</label>
-                <label class="radio-inline"><input type="radio" name="date-radio" value="before">Before</label>
-                <label class="radio-inline"><input type="radio" name="date-radio" value="after">After</label>
-                <label class="radio-inline"><input type="radio" name="date-radio" value="between">Between two dates</label>
-                </p>
-                <input type="text" class="form-control" name="dateQuery" id="inputDateQuery" placeholder="2018-01-01,2018-12-31">
-                <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="searchByDate">
-                        <span class="search-checkbox">search by date</span>
-                </label>
-            </div>
-            </div>
+                <div class="form-group dont-stretch">
+                    <input type="text" class="form-control" name="tagsQuery" id="inputTagsQuery"
+                           placeholder="tag, another tag">
+
+                    <div class="checkbox small">
+                    <label class="query-operator">
+                        <input type="checkbox" name="operator">
+                        AND comma separated<br /> tags (default OR)
+                    </label>
+                </div>
+                </div>
+                <div class="form-group dont-stretch">
+                    <input type="text" class="form-control" name="textQuery" id="inputTextQuery"
+                           placeholder="text">
+                </div>
+                <div class="form-group dont-stretch">
+                    <input type="text" class="form-control" name="dateQuery" id="inputDateQuery" placeholder="yyyy-mm-dd">
+                </div>
             </div>
             <button type="submit" class="btn btn-primary search-btn">Search</button>
         </form>
-        <div class="container">
-            <button type="submit" data-toggle="collapse" data-target="#help">
-                <i class="fa fa-expand"></i><span class="search-help">...show/hide search help</span>
-            </button>
-            <div id="help" class="collapse search-help">
-                <p>Multiple criteria search uses AND operator</p>
-                Steps:
-                <ul>
-                   <li>Input search criteria</li>
-                   <li>Select relevant checkbox</li>
-                       <ul>
-                           <li>Input will be ignored without this step!</li>
-                       </ul>
-                   <li>Repeat for multiple criteria (Optional)</li>
-                   <li>Click Search button</li>
-                </ul>
-            </div>
-        </div>
         </div>
 </div>
