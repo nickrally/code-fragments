@@ -123,7 +123,8 @@ def stripSpaceAndLowerTags(tags):
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    fragments = Fragment.query.order_by(Fragment.id.desc())
+    return render_template('home.html', fragments=fragments)
 
 @app.route('/fragments')
 def viewFirstPage():
@@ -145,6 +146,7 @@ def fragment(id):
     return render_template('show.html', id=id)
 
 @app.route('/pages/search')
+@app.route('/search')
 def search():
     fragments = None
 

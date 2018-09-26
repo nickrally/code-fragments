@@ -1,8 +1,16 @@
 {% extends 'layout.html' %}
 
-{% block body %}
-    <div class="text-center">
+  {% block body %}
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-8 blog-main">
+                      <div class="blog-post">
+
         <img src="static/img/night_watch.png">
-    </div>
-    {% if session.logged_in == NULL %}{% endif %}
-{% endblock %}
+                      </div>
+              </div>
+              {% include 'search.html' %}
+          </div>
+      </div>
+      {% if session.logged_in == NULL %}{% endif %}
+  {% endblock %}
