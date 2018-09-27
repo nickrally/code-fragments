@@ -48,8 +48,12 @@ h2 {
   font-family: sans-serif;
   border:1px solid #5D6D7E;
   color: #5D6D7E;
-  margin: 15px;
-  padding:5px;
+  /*margin: 5px;*/
+  /*padding:5px;*/
+}
+
+.search-input{
+  width: 99px;
 }
 
 
@@ -61,7 +65,7 @@ h2 {
 
 .search-checkbox {
   font-weight: bold;
-  padding:5px;
+  padding:2px;
 }
 
 .query-operator {
@@ -126,3 +130,5 @@ table.width-auto{
   width: 95%;
   table-layout: fixed;
 }
+
+

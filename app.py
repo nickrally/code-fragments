@@ -166,6 +166,10 @@ def search():
 
     def searchByDate():
         date = request.args.get('dateQuery').replace(" ", "")
+        if 'to' in date:
+            dates = date.split('to')
+            return and_(Fragment.date >= dates[0], Fragment.date <= dates[1])
+
         return Fragment.date == date
 
     text_selected = request.args.get('textQuery')
@@ -194,7 +198,7 @@ def search():
         if text_selected and tags_selected and date_selected:
             fragments = Fragment.query.filter(and_(searchText(), searchTags(), searchByDate())).all()
     except DataError:
-        return render_template('error.html', error="Data Error. For dates use yyyy-mm-dd format.")
+        return render_template('error.html', error="Data Error. For a specific date use yyyy-mm-dd format. For a range use yyyy-mm-dd to yyyy-mm-dd.")
 
     if fragments == None:
         return render_template('error.html', error="Check if all search boxes are empty")
