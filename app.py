@@ -150,6 +150,10 @@ def fragment(id):
 def search():
     fragments = None
 
+    def searchTitle():
+        txt = "%{}%".format(request.args.get('textQuery'))
+        return Fragment.title.ilike(txt)
+
     def searchText():
         txt = "%{}%".format(request.args.get('textQuery'))
         return Fragment.text.ilike(txt)
@@ -178,7 +182,7 @@ def search():
 
     try:
         if text_selected:
-            fragments = Fragment.query.filter(searchText()).all()
+            fragments = Fragment.query.filter(or_ (searchText(), searchTitle())).all()
 
         if tags_selected:
             fragments = Fragment.query.filter(searchTags()).all()
