@@ -1,0 +1,9 @@
+<div class="search-div">
+    <div class="dont-stretch">
+        tags:<br />
+    {% for tag in tags %}
+       <a href="{{ request.url_root }}search?tagsQuery={{ tag }}">{{ tag }}</a>
+       .
+    {% endfor %}
+    </div>
+</div>

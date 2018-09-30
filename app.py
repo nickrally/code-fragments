@@ -121,10 +121,16 @@ def stripSpaceAndLowerTags(tags):
     tags = re.sub('\s+', ' ', tags)
     return tags
 
+def getTags():
+    tags = Fragment.query.with_entities(Fragment.tags)
+    unique_tags = list(set([i for subsublist in [item for sublist in tags for item in sublist] for i in subsublist]))
+    return sorted(unique_tags)
+
 @app.route('/')
 def index():
     fragments = Fragment.query.order_by(Fragment.id.desc())
-    return render_template('home.html', fragments=fragments)
+    tags = getTags()
+    return render_template('home.html', fragments=fragments, tags=tags)
 
 @app.route('/fragments')
 def viewFirstPage():
@@ -134,7 +140,9 @@ def viewFirstPage():
 def view(page=1):
     per_page = 5
     fragments = Fragment.query.order_by(Fragment.id.desc()).paginate(page,per_page, error_out=True)
-    return render_template('view.html',fragments=fragments, page=page)
+    tags = getTags()
+    return render_template('view.html',fragments=fragments, page=page, tags=tags)
+
 
 @app.route('/<int:id>')
 def show(id):
@@ -208,7 +216,6 @@ def search():
         return render_template('error.html', error="Check if all search boxes are empty")
 
     return render_template('results.html', fragments=fragments)
-
 
 @app.route('/dashboard', endpoint='dashboard')
 @is_logged_in
