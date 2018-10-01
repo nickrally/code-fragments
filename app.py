@@ -269,7 +269,7 @@ def edit(id):
         fragment.tags = tags.split(',')
         db.session.add(fragment)
         db.session.commit()
-        return redirect(url_for('dashboard'))
+        return render_template('show.html', fragment=fragment, id=id)
     return render_template('edit.html', fragment=fragment, id=id, form=form)
 
 @app.route('/delete/<int:id>', methods=['GET','POST'])

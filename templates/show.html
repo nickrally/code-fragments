@@ -12,6 +12,11 @@
                     <p class="date-style">{{ fragment.date }}</p>
                     <div class="txt-div">{{ fragment.text | safe }}</div>
                     <h6 class="blog-post-footer">{{', '.join(fragment.tags)}}</h6>
+                     <ul class="list-inline">
+                    {% if session['logged_in'] %}
+                       <li class="list-inline-item"><a href="{{ url_for('edit',   id=fragment.id) }}">Edit</a></li>
+                    {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>
